@@ -1,0 +1,142 @@
+,Location,Period,clean_deaths
+0,Algeria,2020,0.0
+1,Algeria,2019,0.0
+2,Algeria,2018,0.0
+3,Angola,2020,14853.0
+4,Angola,2019,13897.0
+5,Angola,2018,13624.0
+6,Benin,2020,10585.0
+7,Benin,2019,10454.0
+8,Benin,2018,10428.0
+9,Botswana,2020,4.0
+10,Botswana,2019,0.0
+11,Botswana,2018,2.0
+12,Burkina Faso,2020,21402.0
+13,Burkina Faso,2019,19228.0
+14,Burkina Faso,2018,18482.0
+15,Burundi,2020,5792.0
+16,Burundi,2019,5315.0
+17,Burundi,2018,5299.0
+18,Cabo Verde,2020,0.0
+19,Cabo Verde,2019,0.0
+20,Cabo Verde,2018,0.0
+21,Cameroon,2020,14505.0
+22,Cameroon,2019,12792.0
+23,Cameroon,2018,12898.0
+24,Central African Republic,2020,5130.0
+25,Central African Republic,2019,5096.0
+26,Central African Republic,2018,5397.0
+27,Chad,2020,12190.0
+28,Chad,2019,11621.0
+29,Chad,2018,11502.0
+30,Comoros,2020,11.0
+31,Comoros,2019,45.0
+32,Comoros,2018,38.0
+33,Congo,2020,2279.0
+34,Congo,2019,2360.0
+35,Congo,2018,2227.0
+36,Côte d’Ivoire,2020,15110.0
+37,Côte d’Ivoire,2019,14918.0
+38,Côte d’Ivoire,2018,15035.0
+39,Democratic Republic of the Congo,2020,78709.0
+40,Democratic Republic of the Congo,2019,65353.0
+41,Democratic Republic of the Congo,2018,65576.0
+42,Djibouti,2020,126.0
+43,Djibouti,2019,97.0
+44,Djibouti,2018,43.0
+45,Equatorial Guinea,2020,766.0
+46,Equatorial Guinea,2019,726.0
+47,Equatorial Guinea,2018,724.0
+48,Eritrea,2020,372.0
+49,Eritrea,2019,437.0
+50,Eritrea,2018,196.0
+51,Eswatini,2020,0.0
+52,Eswatini,2019,0.0
+53,Eswatini,2018,1.0
+54,Ethiopia,2020,9424.0
+55,Ethiopia,2019,5708.0
+56,Ethiopia,2018,6500.0
+57,Gabon,2020,385.0
+58,Gabon,2019,384.0
+59,Gabon,2018,387.0
+60,Gambia,2020,608.0
+61,Gambia,2019,601.0
+62,Gambia,2018,596.0
+63,Ghana,2020,12516.0
+64,Ghana,2019,12324.0
+65,Ghana,2018,12227.0
+66,Guinea,2020,9954.0
+67,Guinea,2019,8611.0
+68,Guinea,2018,8500.0
+69,Guinea-Bissau,2020,969.0
+70,Guinea-Bissau,2019,875.0
+71,Guinea-Bissau,2018,880.0
+72,Kenya,2020,11768.0
+73,Kenya,2019,11298.0
+74,Kenya,2018,11218.0
+75,Liberia,2020,3931.0
+76,Liberia,2019,3390.0
+77,Liberia,2018,3419.0
+78,Madagascar,2020,10265.0
+79,Madagascar,2019,5026.0
+80,Madagascar,2018,4750.0
+81,Malawi,2020,7400.0
+82,Malawi,2019,7061.0
+83,Malawi,2018,7021.0
+84,Mali,2020,20662.0
+85,Mali,2019,18630.0
+86,Mali,2018,18423.0
+87,Mauritania,2020,1129.0
+88,Mauritania,2019,1114.0
+89,Mauritania,2018,1085.0
+90,Morocco,2020,0.0
+91,Morocco,2019,0.0
+92,Morocco,2018,0.0
+93,Mozambique,2020,23693.0
+94,Mozambique,2019,19156.0
+95,Mozambique,2018,19200.0
+96,Namibia,2020,51.0
+97,Namibia,2019,14.0
+98,Namibia,2018,128.0
+99,Niger,2020,24068.0
+100,Niger,2019,22568.0
+101,Niger,2018,22047.0
+102,Nigeria,2020,195720.0
+103,Nigeria,2019,187428.0
+104,Nigeria,2018,186940.0
+105,Rwanda,2020,3205.0
+106,Rwanda,2019,3143.0
+107,Rwanda,2018,3093.0
+108,Sao Tome and Principe,2020,0.0
+109,Sao Tome and Principe,2019,0.0
+110,Sao Tome and Principe,2018,0.0
+111,Senegal,2020,4311.0
+112,Senegal,2019,4251.0
+113,Senegal,2018,4192.0
+114,Sierra Leone,2020,9020.0
+115,Sierra Leone,2019,7236.0
+116,Sierra Leone,2018,7408.0
+117,Somalia,2020,2372.0
+118,Somalia,2019,2311.0
+119,Somalia,2018,2198.0
+120,South Africa,2020,
+121,South Africa,2019,
+122,South Africa,2018,
+123,South Sudan,2020,7290.0
+124,South Sudan,2019,7095.0
+125,South Sudan,2018,6869.0
+126,Sudan,2020,7635.0
+127,Sudan,2019,6673.0
+128,Sudan,2018,5882.0
+129,Togo,2020,3745.0
+130,Togo,2019,3703.0
+131,Togo,2018,3667.0
+132,Uganda,2020,20279.0
+133,Uganda,2019,17282.0
+134,Uganda,2018,17114.0
+135,Zambia,2020,8846.0
+136,Zambia,2019,8244.0
+137,Zambia,2018,8107.0
+138,Zimbabwe,2020,2951.0
+139,Zimbabwe,2019,2003.0
+140,Zimbabwe,2018,1624.0
