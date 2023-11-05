@@ -1,0 +1,126 @@
+---
+title: "FinalProjectJoins"
+author: "Seamus Stein"
+date: "11/1/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Purpose: 
+
+The purpose of this markdown is to join all of the tables of malaria case information, deaths, and demographic/census data into one data frame for analysis.
+
+Inputs. The following files are read in:
+
+final_cases: a csv file containing countries and the cleaned cases 
+final_deaths: a csv file containing countries and the cleaned deaths data
+final_demo: a csv file containing demographic/census information by country. This only contains data from 2023, but used to see what is excluded. 
+cleaned_census.csv: a csv file containing demographic/census information by country containing data from 2019-2023.
+
+Output:
+
+final_data.csv: a csv file containing all the data joined. This will be used in the next step for regression analysis and mapping as well as other data visualization. 
+
+```{r}
+library(tidyverse)
+library(magrittr)
+```
+
+Read in the clean data sets
+```{r}
+final_cases <- read_csv("/Users/seamus/Desktop/project_data/final_cases")
+final_deaths <- read_csv("/Users/seamus/Desktop/project_data/final_deaths")
+final_demo <- read_csv("/Users/seamus/Desktop/project_data/final_demo")
+census_clean <- read_csv("~/Desktop/project_data/cleaned_census.csv")
+```
+
+
+```{r}
+head(final_cases)
+head(final_deaths)
+head(final_demo)
+head(census_clean)
+```
+
+```{r}
+setdiff(final_cases$Location, final_deaths$Location)
+```
+
+```{r}
+setdiff(final_demo$Name, final_cases$Location)
+```
+
+```{r}
+setdiff(final_demo$Name, final_deaths$Location)
+```
+
+Mauritius is the difference of the set differences
+
+Join the tables
+```{r}
+#join by location and period at once 
+cases_deaths <- final_cases %>% inner_join(final_deaths, by = c("Location" = "Location", "Period" = "Period")) %>% 
+                                select(Location, Period, clean_cases, clean_deaths)
+      
+```
+
+```{r}
+"Mauritius" %in% cases_deaths$Location
+```
+```{r}
+setdiff(cases_deaths$Location, final_demo$Name)
+```
+
+
+
+```{r}
+all_data1 <- cases_deaths %>% inner_join(final_demo, by = c("Location" = "Name")) %>% select(-c("...1"))
+head(all_data1)
+```
+```{r}
+length(unique(all_data1$Location)) #43 countries
+length(unique(final_demo$Name)) # 55
+length(unique(cases_deaths$Location)) #47 countries
+```
+```{r}
+"Côte d’Ivoire" %in% all_data1$Location
+"Congo" %in% all_data1$Location
+```
+
+
+Join cases and deaths  with census_clean data
+```{r}
+all_data2 <- cases_deaths %>% inner_join(census_clean, by = c("Location" = "Name", "Period" = "Year"))
+head(all_data2)
+```
+
+
+Remove the rows with NAs in clean_cases and or clean_deaths. 
+
+
+```{r}
+final_all_data <- na.omit(all_data2)
+
+# should be now not in countries in the data 
+"South Africa" %in% final_all_data$Location
+"Eswatini" %in% final_all_data$Location
+```
+
+```{r}
+"Côte d’Ivoire" %in% all_data2$Location
+"Congo" %in% all_data2$Location
+```
+```{r}
+length(unique(all_data2$Location)) #43 countries
+length(unique(census_clean$Name)) # 231 countries
+length(unique(cases_deaths$Location)) #47 countries
+```
+
+Write out the final data for regression analysis. 
+```{r}
+write.csv(final_all_data, "final_data.csv", row.names=T)
+```
+
