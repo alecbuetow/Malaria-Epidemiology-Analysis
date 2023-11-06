@@ -21,9 +21,9 @@ Explain steps for other data (Python)
 
 The data was joined using the R. Packages include `tidyverse` and `magrittr`.
 
-The script to join the data can be found in TableJoins.Rmd
+The script to join the data can be found in `TableJoins.Rmd`
 
-TableJoins.Rmd
+`TableJoins.Rmd`
 
 **Purpose:**
 The purpose of this markdown is to join all of the tables of malaria case information, deaths, and demographic/census data into one data frame for analysis.
