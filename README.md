@@ -78,7 +78,7 @@ Required Packages:
 - `shiny`
 - `ggcorrplot`
 
-Output: 
+**Output:**
 A shiny dashboard, with 8 maps of Africa. For 2019 and 2020 respectively there is a map of log transformed cases, log transformed deaths, malaria prevalence and malaria mortality rate. A correlation matrix using Spearman's correlation is also created and displayed at the end. 
 
 The following steps were performed:
