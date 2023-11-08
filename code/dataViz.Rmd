@@ -1,0 +1,355 @@
+---
+title: "Maps and Data Viz"
+author: "Seamus Stein"
+date: "11/4/2023"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Inputs: 
+final_data.csv: The csv file containing all of the joined data for the regression analysis 
+Africa_Boundries.csv: a csv file containing ISO codes for each country in Africa. 
+
+ISO codes are inner joined to the final data csv file (read in as malaria_data) for mapping in plotly.
+
+Required Packages:
+tidyverse
+magrittr
+plotly
+shiny
+ggcorrplot
+
+Output: 
+A shiny dashboard, with 8 maps of Africa. For 2019 and 2020 respectively there is a map of log transformed cases, log transformed deaths, malaria prevalence and malaria mortality rate. 
+
+A correlation matrix using Spearman's correlation is also created and displayed at the end. 
+
+```{r}
+library(tidyverse)
+library(magrittr)
+library(plotly)
+library(shiny)
+library(ggcorrplot)
+```
+
+
+```{r}
+# read in the data
+malaria_data <- malaria <-read_csv("~/Desktop/project_data/final_data.csv")
+iso_codes <- read_csv("~/Desktop/project_data/Africa_Boundaries.csv")
+```
+
+```{r}
+# rename name of country to Location for joining 
+iso_codes %<>%  rename("Location" = NAME_0)
+
+# join ISO codes to malaria data for mapping 
+geoDat <- malaria_data %>% inner_join(iso_codes, by = "Location")
+
+```
+
+
+Filter the data for 2019 and 2020
+```{r}
+geoDat2019 <- geoDat %>% filter(Period == 2019)
+geoDat2020 <- geoDat %>% filter(Period == 2020)
+```
+
+Map log transformed cases in 2019
+```{r}
+# Create a chloropleth of cases in 2019
+figCases2019 <- plot_geo(data = geoDat2019, locations = ~ISO) %>%
+  add_trace(
+    z = ~log10(clean_cases +1),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "log(Cases) <br>2019") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+    dragmode = F
+  )
+
+# Show the plot
+figCases2019
+
+```
+
+
+Map malaria log transformed cases in 2020 
+```{r}
+figCases2020 <- plot_geo(data = geoDat2020, locations = ~ISO) %>%
+  add_trace(
+    z = ~ log10(clean_cases +1),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "log(Cases) <br>2020") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+     dragmode = F # disable drag mode with mouse.
+  )
+
+# Show the plot
+figCases2020
+
+```
+
+Rename total population columns for 2019 and 2020 subset. 
+```{r}
+geoDat2019 %<>%  rename("Total_Population" = `Total Population`)
+geoDat2020 %<>% rename("Total_Population" = `Total Population`)
+```
+
+```{r}
+# Create a chloropleth of Malaria Prevalence in 2019
+figPrev2019 <- plot_geo(data = geoDat2019, locations = ~ISO) %>%
+  add_trace(
+    z = ~round((clean_cases/Total_Population*100),2),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "Prevelance (%) <br>2019") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+    dragmode = F #disable drag mode with mouse.
+  )
+
+# Show the plot
+figPrev2019
+
+```
+
+```{r}
+# Create a chloropleth of malaria prevalence in 2020
+figPrev2020 <- plot_geo(data = geoDat2020, locations = ~ISO) %>%
+  add_trace(
+    z = ~round((clean_cases/Total_Population)*100,2),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T, 
+    zmin = 0,  # Set the minimum value for the color scale
+    zmax = 40  # set max value for the color scale 
+  ) %>%
+  colorbar(title = "Prevelance (%) <br>2020") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+    dragmode = F #disable drag mode with mouse. 
+  )
+
+# Show the plot
+figPrev2020
+```
+
+Examine the log transformed deaths in 2019
+
+```{r}
+# Create a chloropleth map of Africa log transformed deaths
+figDeaths2019 <- plot_geo(data = geoDat2019, locations = ~ISO) %>%
+  add_trace(
+    z = ~log10(clean_deaths +1),
+    #text = ~paste("Country: ", ISO "<br>Cases: ", clean_cases),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "log(Deaths) <br>2019") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+     dragmode = F
+  )
+
+# Show the plot
+figDeaths2019
+```
+
+Examine the log transformed deaths in 2020
+```{r}
+fig2020_deaths <- plot_geo(data = geoDat2020, locations = ~ISO) %>%
+  add_trace(
+    z = ~log10(clean_deaths + 1),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "log(Deaths)  <br>2020") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+     dragmode = F # disable drag mode for mouse 
+  )
+
+# Show the plot
+fig2020_deaths
+```
+
+Map the Malaria Mortality Rate in 2019
+```{r}
+fig2019Mortality <- plot_geo(data = geoDat2019, locations = ~ISO) %>%
+  add_trace(
+    z = ~(clean_deaths/Total_Population)*100,
+    #text = ~paste("Country: ", ISO "<br>Cases: ", clean_cases),
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "Mortality Rate (%)  <br>2019") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+     dragmode = F
+  )
+
+# Show the plot
+fig2019Mortality
+```
+Map the Mortality Rate 2020
+
+```{r}
+fig2020Mortality <- plot_geo(data = geoDat2020, locations = ~ISO) %>%
+  add_trace(
+    z = ~(clean_deaths/Total_Population)*100,
+    locations = ~ISO,
+    type = 'choropleth',
+    colorscale = 'Viridis',
+    showscale = T
+  ) %>%
+  colorbar(title = "Mortality Rate (%)  <br> 2020") %>%
+  layout(
+    geo = list(
+      scope = 'africa'
+    ),
+     dragmode = F
+  )
+
+# Show the plot
+fig2020Mortality
+```
+
+
+Create a shiny dashboard
+
+Define the UI so it displays 2019 and 2020 graphs in rows and columns for each cooresponding  epidemiological meesure.
+```{r}
+ui <- fluidPage(
+  # title the dashboard
+  titlePanel("Malaria Dashboard"),
+  fluidRow(
+    column(
+      width = 6, # Set the width to half of the row for 2019
+      plotlyOutput("plot1"),
+      plotlyOutput("plot2"),
+      plotlyOutput("plot3"),
+      plotlyOutput("plot4")
+    ),
+    column(
+      width = 6, # Set the width to half of the row for 2020
+      plotlyOutput("plot5"),
+      plotlyOutput("plot6"),
+      plotlyOutput("plot7"),
+      plotlyOutput("plot8")
+    )
+  )
+)
+
+
+
+```
+
+Define the server to host the plotly plots made above. 
+
+```{r}
+server <- function(input, output) {
+  # Create the cases in 20191
+  output$plot1 <- renderPlotly({
+    figCases2019
+  })
+  # deaths in 2019
+  output$plot2 <- renderPlotly({
+    figDeaths2019
+  })
+  # 2019 prevalence
+  output$plot3 <- renderPlotly({
+    figPrev2019
+  })
+  # 2019 mortality
+  output$plot4 <- renderPlotly({
+    fig2019Mortality
+  })
+  
+  # Create the Plotly graphs for 2020
+  output$plot5 <- renderPlotly({
+    figCases2020
+  })
+  
+  output$plot6 <- renderPlotly({
+    fig2020_deaths
+  })
+  
+  output$plot7 <- renderPlotly({
+    figPrev2020
+  })
+  
+  output$plot8 <- renderPlotly({
+    fig2020Mortality
+  })
+}
+
+# launch the app
+shinyApp(ui, server)
+
+
+```
+
+
+Calculate the correlations 
+
+```{r}
+# obtain the numeric columns to calcualte correlations 
+malaria_numeric <- malaria %>%  select(-c("...1", "Location", "Period"))
+
+# calculate Spearman's correlations 
+corr <- cor(malaria_numeric, method = "spearman")
+
+```
+
+Create a correlation matrix 
+```{r}
+ggcorrplot(corr,
+  hc.order = T, type = "lower",
+  lab = T
+)
+```
+
+View relationships of all variables. 
+```{r}
+plot(malaria_numeric)
+```
+
