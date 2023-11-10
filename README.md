@@ -134,7 +134,7 @@ The map depicting malaria mortality rates by country in 2020 was created in a si
 
 ### Shiny Dashboard Creation: 
 
-Now that all of the plots have  been created a shiny dashboard will be created. In this dashboard, the plots are organized such that there are 4 rows and 2 columns. Each row corresponds to a measure (cases, prevalence, deaths, then mortality rate). This was done in the ui object to obtain maps side by side with 2019 on the left and 2020 on the right for each measure. The server function renders the plots and there is a command to launch the app. 
+Now that all of the plots have  been created a shiny dashboard will be created. In this dashboard, the plots are organized such that there are 4 rows and 2 columns. Each row corresponds to a measure (cases, prevalence, deaths, then mortality rate). This was done in the ui object to obtain maps side by side with 2019 on the left and 2020 on the right for each measure. The server function renders the plots and there is a command to launch the app in the default browser as a html page. 
 
 ### Creating the correlation Matrix
 To create the correlation matrix, we selected the numeric columns from the original malaria dataframe which was assigned to final_data.csv when read in. We excluded the column “…1” which is the unique row identifier. 
