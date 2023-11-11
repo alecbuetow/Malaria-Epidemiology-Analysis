@@ -53,6 +53,11 @@ Resulting table was all_data1
 *  43 Countries remained in the final dataset for analysis. 
 
 ## Regression 
+Predictions were made on the number of deaths based on all other covariates. It was tested whether predictions could be made better and more generalizable with the following techniques:
+
+* One-hot encoding
+* Exlcusion of the number of cases
+* Log standardizing covariates and the number of deaths
 
 ## Data Visualization
 
