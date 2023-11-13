@@ -3,6 +3,8 @@ QBS181 Project
 
 ## Data Proccessing and Cleaning
 
+Two datasets from the World Health Organization were downloaded and cleaned in Python. These datasets were estimated on the total number of malaria cases and deaths by national reporting agencies. The data was adjusted for based on underreporting estimates, extent of health services use, and proportion of cases that were parasite positive and reported as an estimate plus a 95% confidence interval. Cleaning was performed in python to remove the unicode spaces and the confidence intervals and the outputs were 'final_cases' and 'final_deaths'.
+
 Census data was downloaded from the United States’ Census Bureau, international database. The data includes demographic information for countries in Africa including the country’s name,  total population, growth rate, population density (per square km), total fertility rate, life expectancy at birth, and under-5 mortality rate. 
 
 Data for 2023 was downloaded and processed using Python and the final csv file was final_demo. 
@@ -15,9 +17,6 @@ The steps were as follows.
 - The Total Population column was made into a general type to remove the commas.
 
 This sheet was then saved as cleaned_census.csv.
-
-
-Explain steps for other data (Python)
 
 ## Joining Data
 
@@ -145,5 +144,30 @@ Now that all of the plots have  been created a shiny dashboard will be created. 
 To create the correlation matrix, we selected the numeric columns from the original malaria dataframe which was assigned to final_data.csv when read in. We excluded the column “…1” which is the unique row identifier. 
 
 When calculating the correlation matrix a Spearman's correlation was used. The correlation matrix was visualized using the package ggcorrplot. Specifically, hc.cluster was set to true to use a hierarchical cluster ordering and the type was set to lower to obtain the lower half. Finally, the labels of the axis were set to true. 
+
+### Bibliography
+
+[1] World Malaria Report 2022.https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2022. Accessed 4 Oct. 2023. 
+
+[2] Fact Sheet about Malaria. https://www.who.int/news-room/fact-sheets/detail/malaria. Accessed 4 Oct. 2023.
+
+[3] United States Government. (n.d.). International database. United States Census Bureau. https://www.census.gov/data-tools/demo/idb/#/table?COUNTRY_YEAR=2023&amp;COUNTRY_YR_ANIM=2023&amp;CCODE_SINGLE=**&amp;CCODE=**&amp;menu=tableViz&amp;TABLE_RANGE=2000,2024&amp;TABLE_YEARS=2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024&amp;TABLE_USE_RANGE=Y&amp;TABLE_USE_YEARS=N&amp;TABLE_STEP=1 
+
+[4] World Health Organization. (n.d.). Estimated number of malaria cases. https://www.who.int/data/gho/data/indicators/indicator-details/GHO/estimated-number-of-malaria-cases 
+
+[5] World Health Organization. (n.d.-b). Estimated number of malaria deaths. https://www.who.int/data/gho/data/indicators/indicator-details/GHO/estimated-number-of-malaria-deaths 
+
+[6] World Health Organization. (n.d.-c). Number of malaria cases treated with any first  line TX courses (including artemisinin-based combination therapies (ACTS)). https://www.who.int/data/gho/data/indicators/indicator-details/GHO/number-of-malaria-cases-treated-with-any-first-line-tx-courses-including-artemisinin-based-combination-therapies-acts 
+
+[7] World Health Organization. (n.d.-d). Number of people protected from malaria by indoor residual spraying (IRS). https://www.who.int/data/gho/data/indicators/indicator-details/GHO/number-of-people-protected-from-malaria-by-indoor-residual-spraying-irs 
+
+[8] World Health Organization. (n.d.-e). Population with access to an insecticide-treated bed net (ITN) for Malaria Protection (%), modelled. https://www.who.int/data/gho/data/indicators/indicator-details/GHO/population-with-access-to-an-insecticide-treated-bed-net-(itn)-for-malaria-protection-modelled 
+
+[9] Krefis, Anne Caroline, et al. "Modeling the relationship between precipitation and malaria incidence in children from a holoendemic area in Ghana." The American journal of tropical medicine and hygiene 84.2 (2011): 285.
+
+[10] World Health Organization. World malaria report 2022. World Health Organization, 2022.
+
+[11] Mathers, Colin D. "History of global burden of disease assessment at the World Health Organization." Archives of Public Health 78.1 (2020): 1-13.
+
 
 
