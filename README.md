@@ -7,7 +7,7 @@ Alec Buetow, Graham Schultz, and Seamus Stein
 
 ## Data Proccessing and Cleaning
 
-Two datasets from the World Health Organization were downloaded and cleaned in Python. These datasets were estimated on the total number of malaria cases and deaths by national reporting agencies. The data was adjusted for based on underreporting estimates, extent of health services use, and proportion of cases that were parasite positive and reported as an estimate plus a 95% confidence interval. Cleaning was performed in python to remove the unicode spaces and the confidence intervals and the outputs were 'final_cases' and 'final_deaths'.
+Two datasets from the World Health Organization were downloaded and cleaned in Python. The notebook file is titled `QBS181_Project_Data_Processing.ipynb`. These datasets were estimated on the total number of malaria cases and deaths by national reporting agencies. The data was adjusted for based on underreporting estimates, extent of health services use, and proportion of cases that were parasite positive and reported as an estimate plus a 95% confidence interval. Cleaning was performed in Python to remove the unicode spaces and the confidence intervals and the outputs were 'final_cases' and 'final_deaths'.
 
 Census data was downloaded from the United States’ Census Bureau, international database. The data includes demographic information for countries in Africa including the country’s name,  total population, growth rate, population density (per square km), total fertility rate, life expectancy at birth, and under-5 mortality rate. 
 
