@@ -1,5 +1,6 @@
 # QBS181
 QBS181 Project
+
 Malaria in Africa: Predicting Deaths by Country and Visualizing Epidemiological Measures
 
 Alec Buetow, Graham Schultz, and Seamus Stein
