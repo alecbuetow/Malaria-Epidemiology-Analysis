@@ -58,6 +58,7 @@ Predictions were made on the number of deaths based on all other covariates. It 
 * Exlcusion of the number of cases
 * Log standardizing covariates and the number of deaths
 
+Code for the linear regression can be found in `final_project.ipynb`.
 ## Data Visualization
 
 The data was visualized in multiple ways including the creation of 8 interactive geographical maps of Africa depicting one epidemiological measure at a time. Specifically, log transformed cases, log transformed deaths, malaria prevalence and malaria mortality rate were mapped for 2019 and 2020. In addition, a correlation matrix, using Spearman's correlation, was developed to analyze the correlations between the demographic variables of interest. 
