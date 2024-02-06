@@ -1,4 +1,4 @@
-# QBS181
+# Malaria epidemiologic Analysis
 QBS181 Project
 
 Malaria in Africa: Predicting Deaths by Country and Visualizing Epidemiological Measures
