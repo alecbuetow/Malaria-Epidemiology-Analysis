@@ -1,9 +1,15 @@
 # Malaria epidemiologic Analysis
-QBS181 Project
+QBS 181 Project
 
 Malaria in Africa: Predicting Deaths by Country and Visualizing Epidemiological Measures
 
 Alec Buetow, Graham Schultz, and Seamus Stein
+
+# Key Takeaways
+
+- **Data Joining:** Inner joins were performed on 3 datasets, retaining only observations (defined as a unique combination of year and country) which had information for every feature
+- **Visualizations:** Countries were color coded by intensity of each feature (e.g. population density) using geoDat2019
+- **Predictions:** Multivariable linear regression was chosen as the model to predict deaths in each country because of its ease of interpretability. The forecasts generated from this analysis would offer valuable insights into optimal resource allocation for prevenatative measures such as insecticide treatment, vaccinations and bed nets.
 
 ## Data Proccessing and Cleaning
 
